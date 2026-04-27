@@ -93,6 +93,51 @@ public class FuncionarioDAO {
         return listaFuncionarios;
     }
 
-    public void atualizarFuncionario(Long idx'')
+    public boolean atualizarFuncionario(Funcionario funcionario) {
+        String sql = """
+                UPDATE funcionario SET nome = ?, cpf = ?, email = ?, matricula = ?, cargo = ?, percentual_comissao = ?
+                WHERE  id = ?;
+                """;
 
+        boolean funcionarioAtualizado = false;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, funcionario.getNome());
+            stmt.setString(2, funcionario.getCpf());
+            stmt.setString(3, funcionario.getEmail());
+            stmt.setString(4, funcionario.getMatricula());
+            stmt.setString(5, funcionario.getCargo());
+            stmt.setDouble(6, funcionario.getPercentualComissao());
+            stmt.setLong(7, funcionario.getId());
+
+            int linhasAfetadas = stmt.executeUpdate();
+
+            if(linhasAfetadas > 0) {
+                funcionarioAtualizado = true;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar usuário" + e.getMessage());
+        }
+        return funcionarioAtualizado;
+    }
+
+    public void deletarFuncionario(Long id) {
+        String sql = """
+                DELETE FROM funcionario WHERE id = ?;
+                """;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+            System.out.println("Funcionario deletado com sucesso.");
+
+        } catch (SQLException e) {
+           throw new RuntimeException("Erro ao deletar funcionario. " + e.getMessage());
+        }
+    }
 }

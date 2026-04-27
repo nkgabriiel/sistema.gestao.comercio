@@ -2,23 +2,14 @@ package sistema.gestao.model;
 
 public class Cliente extends Pessoa {
     private Long id;
-    private Integer pontosDeFidelidade;
+    private Integer pontoFidelidade;
 
-    public Cliente(String nome, String cpf, String email, Integer pontosDeFidelidade) {
+    public Cliente(String nome, String cpf, String email, Integer pontoFidelidade) {
         super(nome, cpf, email);
-        this.pontosDeFidelidade = pontosDeFidelidade;
+        this.pontoFidelidade = pontoFidelidade;
     }
 
     public Cliente() {
-        super();
-    }
-
-    public Integer getPontosDeFidelidade() {
-        return pontosDeFidelidade;
-    }
-
-    public void setPontosDeFidelidade(Integer pontosDeFidelidade) {
-        this.pontosDeFidelidade = pontosDeFidelidade;
     }
 
     public Long getId() {
@@ -27,5 +18,13 @@ public class Cliente extends Pessoa {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getPontoFidelidade() {
+        return pontoFidelidade;
+    }
+
+    public void setPontoFidelidade(Integer pontoFidelidade) {
+        this.pontoFidelidade = pontoFidelidade;
     }
 }

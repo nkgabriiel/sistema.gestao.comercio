@@ -20,7 +20,7 @@ public class ClienteDAO {
             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getCpf());
             stmt.setString(3, cliente.getEmail());
-            stmt.setInt(4, cliente.getPontosDeFidelidade());
+            stmt.setInt(4, cliente.getPontoFidelidade());
             stmt.executeUpdate();
 
             try (ResultSet rs = stmt.getGeneratedKeys();) {
@@ -36,7 +36,8 @@ public class ClienteDAO {
 
     public boolean atualizarCliente(Cliente cliente) {
         String sql = """
-                UPDATE cliente SET nome = ?, cpf = ?, email = ?, ponto_fidelidade = ? WHERE id = ?;
+                UPDATE cliente SET nome = ?, cpf = ?, email = ?, ponto_fidelidade = ?
+                WHERE id = ?;
                 """;
 
         boolean usuarioAtualizado = false;
@@ -47,7 +48,7 @@ public class ClienteDAO {
             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getCpf());
             stmt.setString(3, cliente.getEmail());
-            stmt.setInt(4, cliente.getPontosDeFidelidade());
+            stmt.setInt(4, cliente.getPontoFidelidade());
             stmt.setLong(5, cliente.getId());
 
             int linhasAfetadas = stmt.executeUpdate();
@@ -82,7 +83,7 @@ public class ClienteDAO {
                     clienteEncontrado.setNome(rs.getString("nome"));
                     clienteEncontrado.setCpf(rs.getString("cpf"));
                     clienteEncontrado.setEmail(rs.getString("email"));
-                    clienteEncontrado.setPontosDeFidelidade(rs.getInt("ponto_fidelidade"));
+                    clienteEncontrado.setPontoFidelidade(rs.getInt("ponto_fidelidade"));
                 }
             }
 
@@ -123,7 +124,7 @@ public class ClienteDAO {
 
     public void deletarCliente(Long id) {
         String sql = """
-                DELETE FROM cliente WHERE id = ?;
+                DELETE * FROM cliente WHERE id = ?;
                 """;
 
         try (Connection conn = ConnectionFactory.getConnection();

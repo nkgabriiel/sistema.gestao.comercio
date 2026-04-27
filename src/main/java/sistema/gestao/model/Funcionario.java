@@ -48,4 +48,17 @@ public class Funcionario extends Pessoa {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Funcionario{" +
+                "id=" + id +
+                ", matricula='" + matricula + '\'' +
+                ", cargo='" + cargo + '\'' +
+                ", percentualComissao=" + percentualComissao +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
