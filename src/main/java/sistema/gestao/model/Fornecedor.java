@@ -30,7 +30,7 @@ public class Fornecedor {
     }
 
     public void setCnpj(String cnpj) {
-        this.cnpj = this.cnpj;
+        this.cnpj = cnpj;
     }
 
     public String getNomeFantasia() {
