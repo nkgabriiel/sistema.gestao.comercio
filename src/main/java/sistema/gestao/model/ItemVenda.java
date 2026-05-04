@@ -12,6 +12,10 @@ public class ItemVenda {
         this.precoUnitario = precoUnitario;
     }
 
+    public ItemVenda() {
+    }
+
+
     public Long getId() {
         return id;
     }

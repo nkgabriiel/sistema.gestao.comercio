@@ -69,11 +69,11 @@ public class Venda {
         this.dataHora = dataHora;
     }
 
-    public FormaPagamento getMetodoPagamento() {
+    public FormaPagamento getFormaPagamento() {
         return formaPagamento;
     }
 
-    public void setMetodoPagamento(FormaPagamento formaPagamento) {
+    public void setFormaPagamento(FormaPagamento formaPagamento) {
         this.formaPagamento = formaPagamento;
     }
 

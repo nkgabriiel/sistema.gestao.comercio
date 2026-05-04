@@ -1,6 +1,7 @@
 package sistema.gestao.controller;
 
 import sistema.gestao.model.Fornecedor;
+import sistema.gestao.model.ItemVenda;
 import sistema.gestao.model.Produto;
 
 import java.sql.*;
@@ -176,6 +177,18 @@ public class ProdutoDAO {
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao deletar produto." + e.getMessage());
+        }
+    }
+
+    public void baixarEstoque (Integer quantidadeVendida, Long produtoId, Connection conn)  throws SQLException {
+        String sql = """
+                UPDATE produto SET quantidade_atual = quantidade_atual - ? WHERE id = ?;
+                """;
+
+        try(PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, quantidadeVendida);
+            stmt.setLong(2, produtoId);
+            stmt.executeUpdate();
         }
     }
 }
