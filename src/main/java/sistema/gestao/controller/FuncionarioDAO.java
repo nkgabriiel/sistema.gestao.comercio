@@ -64,6 +64,36 @@ public class FuncionarioDAO {
         return funcionarioEncontrado;
     }
 
+    public Funcionario encontrarFuncionarioPorCpf(String cpf) {
+        String sql = """
+                SELECT * FROM funcionario WHERE cpf = ?;
+                """;
+        Funcionario funcionarioEncontrado = null;
+
+        try(Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, cpf);
+
+            try(ResultSet rs = stmt.executeQuery()) {
+
+                if(rs.next()){
+                    funcionarioEncontrado = new Funcionario();
+
+                    funcionarioEncontrado.setId(rs.getLong("id"));
+                    funcionarioEncontrado.setNome(rs.getString("nome"));
+                    funcionarioEncontrado.setCpf(rs.getString("cpf"));
+                    funcionarioEncontrado.setEmail(rs.getString("email"));
+                    funcionarioEncontrado.setCargo(rs.getString("cargo"));
+                    funcionarioEncontrado.setPercentualComissao(rs.getDouble("percentual_comissao"));
+                }
+            }
+        } catch (SQLException e) {
+            throw  new RuntimeException("Erro ao encontrar funcionário." + e.getMessage());
+        }
+        return funcionarioEncontrado;
+    }
+
     public List<Funcionario> listarFuncionarios() {
         List<Funcionario> listaFuncionarios = new ArrayList<>();
 

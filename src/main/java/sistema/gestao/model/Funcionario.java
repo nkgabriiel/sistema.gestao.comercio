@@ -13,6 +13,15 @@ public class Funcionario extends Pessoa {
         this.percentualComissao = percentualComissao;
     }
 
+    public Funcionario(String nome, String cpf, String email, String matricula) {
+        super(nome, cpf, email);
+        this.matricula = matricula;
+    }
+
+    public Funcionario(String nome, String cpf, String email) {
+        super(nome, cpf, email);
+    }
+
     public Funcionario() {
         super();
     }

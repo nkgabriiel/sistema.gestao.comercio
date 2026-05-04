@@ -46,7 +46,7 @@ public class ProdutoDAO {
                     f.cnpj,
                     f.nome_representante,
                     f.contato_representante,
-                    f.nome_fantasia,
+                    f.nome_fantasia
                 FROM produto p
                 INNER JOIN fornecedor f ON p.fornecedor_id = f.id
                 WHERE p.id = ?;
@@ -94,8 +94,8 @@ public class ProdutoDAO {
                     f.id AS fornecedor_id,
                     f.cnpj,
                     f.nome_representante,
-                    f.contato_representante
-                    f.nome_fantasia,
+                    f.contato_representante,
+                    f.nome_fantasia
                 FROM produto p
                 INNER JOIN fornecedor f ON p.fornecedor_id = f.id;
                 """;

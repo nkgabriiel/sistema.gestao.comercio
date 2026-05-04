@@ -98,7 +98,7 @@ public class VendaDAO {
                 FROM venda v
                 INNER JOIN funcionario f ON v.funcionario_id = f.id
                 LEFT JOIN cliente c ON v.cliente_id = c.id
-                ORDER BY v.data_hora DESC;
+                ORDER BY v.data DESC;
                 """;
 
         ItemVendaDAO itemDAO = new ItemVendaDAO();
