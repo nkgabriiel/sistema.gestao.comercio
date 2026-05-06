@@ -262,7 +262,7 @@ public class Menu {
             switch (opcao) {
                 case 1:
                     System.out.println("\n[ Cadastrar Produto ]");
-                    System.out.println("Funcionalidade delegada para futura implementacao.");
+
                     break;
                 case 2:
                     System.out.println("\n[ Posicao de Estoque ]");
@@ -316,6 +316,7 @@ public class Menu {
             int opcao = lerOpcaoInteira();
             switch (opcao) {
                 case 1:
+                    cadastrarCliente();
                 case 2:
                 case 3:
                 case 4:
@@ -329,6 +330,24 @@ public class Menu {
                     System.out.println("[!] Opcao invalida.");
             }
         }
+    }
+
+    private void cadastrarCliente() {
+        Cliente cliente = new Cliente();
+        System.out.println("Insira o nome do cliente: ");
+        String nome = scanner.nextLine();
+        System.out.println("Insira o CPF do cliente: ");
+        String cpf = scanner.nextLine();
+        System.out.println("Insira o email do cliente: ");
+        String email = scanner.nextLine();
+        int pontoFidelidade = 0;
+
+        cliente.setNome(nome);
+        cliente.setEmail(email);
+        cliente.setCpf(cpf);
+        cliente.setPontoFidelidade(pontoFidelidade);
+
+        clienteDAO.inserirCliente(cliente);
     }
 
     private void submenuFornecedores() {
